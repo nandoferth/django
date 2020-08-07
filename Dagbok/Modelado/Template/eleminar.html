@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<br>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-body">
+            <p>
+                Esta seguro de eliminar "{{item}}"?
+            </p>
+            <form action="{% url 'eleminarevents' item.id %}" method="POST">
+                {% csrf_token %}
+                <a class="btn btn-warning" href="">Cancelar</a>
+                <input class="btn btn-danger" type="submit" name="">
+            </form>
+        </div>
+
+    </div>
+</div>
