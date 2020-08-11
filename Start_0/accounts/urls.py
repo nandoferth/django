@@ -8,4 +8,5 @@ urlpatterns = [
     path('table/',views.Table),
     path('login/',views.login),
     path('register/',views.register),
+    path('customer/<str:pk_test>/',views.CustomerPage),
 ]
