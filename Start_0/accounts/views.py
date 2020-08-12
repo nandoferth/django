@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from .models import *
+from .forms import OrdersForm
 
 def login(request):
     
@@ -29,12 +30,22 @@ def CustomerPage(request, pk_test):
     return render(request,'accounts/Customer.html',context)
 
 def Table(request):
+    
+#-----------------------------------------------------#
     total_ordenes = Orders.objects.all().count()
     total_productos = Product.objects.all().count()
     total_usuarios = Customer.objects.all().count()
     products = Product.objects.all()
+    users = Customer.objects.all()
+#-----------------------------------------------------#
+    form = OrdersForm()
+    if request.method == 'POST':
+        #print('print',request.POST)
+        form = OrdersForm(request.POST)
+        if form.is_valid:
+            form.save()
     context = {'total_ordenes':total_ordenes,'total_productos':total_productos,
-    'total_usuarios':total_usuarios, 'products':products}
+    'total_usuarios':total_usuarios, 'products':products,'users':users,'form':form}
     return render(request,'accounts/Table.html',context)
 
 
