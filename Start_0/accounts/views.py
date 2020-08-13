@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import UserCreationForm
 from .models import *
@@ -40,10 +40,11 @@ def Table(request):
 #-----------------------------------------------------#
     form = OrdersForm()
     if request.method == 'POST':
-        #print('print',request.POST)
+        print('print',request.POST)
         form = OrdersForm(request.POST)
-        if form.is_valid:
+        if form.is_valid():
             form.save()
+            return redirect('/table')
     context = {'total_ordenes':total_ordenes,'total_productos':total_productos,
     'total_usuarios':total_usuarios, 'products':products,'users':users,'form':form}
     return render(request,'accounts/Table.html',context)
