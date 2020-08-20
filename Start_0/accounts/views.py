@@ -1,10 +1,14 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+#=========================================================#
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import Group
+from django.contrib import messages
+#=========================================================#
 from .models import *
+from .decorators import admin_only
 
 from .forms import OrdersForm,OrdersProduct,CreationUserForm
 
@@ -34,7 +38,9 @@ def register(request):
         if request.method == 'POST':
             form = CreationUserForm(request.POST)
             if form.is_valid():
-                form.save()
+                user = form.save()
+                group = Group.objects.get(name='customer')
+                user.groups.add(group)
                 return redirect('/login')
         context={'form':form}
         return render(request,'accounts/Register.html',context)
@@ -51,6 +57,7 @@ def CustomerPage(request, pk_test):
     context = {'user':user,'product':product}
     return render(request,'accounts/Customer.html',context)
 @login_required(login_url='login')
+@admin_only 
 def Table(request):
     
 #-----------------------------------------------------#
