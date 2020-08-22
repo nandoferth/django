@@ -8,7 +8,7 @@ from django.contrib.auth.models import Group
 from django.contrib import messages
 #=========================================================#
 from .models import *
-from .decorators import admin_only
+from .decorators import admin_only,allowed_users
 
 from .forms import OrdersForm,OrdersProduct,CreationUserForm
 
@@ -41,6 +41,9 @@ def register(request):
                 user = form.save()
                 group = Group.objects.get(name='customer')
                 user.groups.add(group)
+                Customer.objects.create(
+                    user=user
+                )
                 return redirect('/login')
         context={'form':form}
         return render(request,'accounts/Register.html',context)
@@ -50,6 +53,14 @@ def home(request):
 @login_required(login_url='login')
 def Crud(request):
     return render(request,'accounts/Crud.html')
+
+@login_required(login_url='login')
+@allowed_users(allowed_roles=['customer'])
+def UserPage(request):
+    producto = request.user.customer.orders_set.all()
+    total = Orders.objects.count()
+    context = {'producto':producto,'total':total}
+    return render(request,'accounts/User.html',context)
 @login_required(login_url='login')
 def CustomerPage(request, pk_test):
     user = Customer.objects.get(name=pk_test)

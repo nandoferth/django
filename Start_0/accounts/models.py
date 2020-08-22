@@ -4,6 +4,7 @@ class Customer(models.Model):
     user = models.OneToOneField(User,null=True,on_delete=models.CASCADE)
     name = models.CharField(max_length=50,null=True)
     email = models.CharField(max_length=50,null=True)
+    prfile_pic= models.ImageField(null=True,blank=True)
     date_create = models.DateTimeField(auto_now_add=True, null=True)
     def __str__(self):
         return self.name

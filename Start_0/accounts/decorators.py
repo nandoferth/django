@@ -9,7 +9,7 @@ def unauthenticated_user(view_func):
             return view_func(redirect, *args, **kwargs)
     return wrapp_func
 
-"""def allowed_users(allowed_roles=[]):
+def allowed_users(allowed_roles=[]):
     def decorator(view_func):
         def wrapper_func(request, *args, **kwargs):
             print('role: ',allowed_roles)
@@ -21,7 +21,7 @@ def unauthenticated_user(view_func):
             else:
                 return HttpResponse('Solo el administrador puede ver esta Pagina')
         return wrapper_func
-    return decorator"""
+    return decorator
 #loginPage -> obtiene el rol del usuario -> admin_only -> mostrara las vistas deacuerod al rol
 def admin_only(view_func):
     def wrapper_function(request, *args, **kwargs):

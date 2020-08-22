@@ -10,4 +10,5 @@ urlpatterns = [
     path('logout/',views.logoutPage,name="logout"),
     path('register/',views.register,name="register"),
     path('customer/<str:pk_test>/',views.CustomerPage,name="customer"),
+    path('user/', views.UserPage,name="user"),
 ]
