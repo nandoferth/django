@@ -23,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include(router.urls)),
     path('auth/', include('rest_framework_social_oauth2.urls')),
+    path('login/'views.singIn())
 ]
