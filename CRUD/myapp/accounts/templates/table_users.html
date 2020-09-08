@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Berthday</th>
+                </tr>
+                {% for user in users %}
+                <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>{{user.first_name}}</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                    </tr>
+                </tbody>
+                {& endfor %}
+            </thead>
+        </table>
+    </div>
+    
+</body>
+</html>
