@@ -1,0 +1,12 @@
+{% extends 'accounts/main.html' %}
+{% block title %} Create a new Job{% endblock %}
+{% block content %}
+<form action="" method="POST">
+    <div class="form-group">
+        {% csrf_token %}
+        {{ form }}
+    </div>
+    <button type="submit" class="btn btn-light">Submit</button>
+</form>
+
+{% endblock %}
