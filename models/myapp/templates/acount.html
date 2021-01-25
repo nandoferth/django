@@ -7,9 +7,12 @@
 </head>
 <body>
     {{ totalAcounts }}
+    <br>
     {% for acount in acounts %}
-        {{ acount.Customer }}
+        {{ acount.Customer.user }}
+        {{ acount.Customer.email }}
         {{ acount.acount }}
+        <br>
     {% endfor %}
 </body>
 </html>

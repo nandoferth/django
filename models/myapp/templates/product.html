@@ -6,8 +6,15 @@
   <title>Document</title>
 </head>
 <body>
+  <h1>Productos</h1>
   {% for product in products %}
     {{ product.productName }}
+    {{ product.sizesProduct }}
+  {% endfor %}
+  <br>
+  {{productsSize}}
+  {% for productSize in productsSize %}
+    {{ productSize.sizesProduct }}
   {% endfor %}
 </body>
 </html>
